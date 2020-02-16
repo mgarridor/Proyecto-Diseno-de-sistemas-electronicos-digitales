@@ -43,6 +43,7 @@ end pwm;
 architecture Behavioral of pwm is
 
 signal cuenta_reg,cuenta_next :unsigned(8 downto 0);
+signal clk_en:std_logic:='0';
 signal bit_aux:std_logic;
 
 begin
@@ -76,4 +77,6 @@ pwm_pulse<= '1' when (cuenta_reg>(unsigned(sample_in)-1)) else
 with cuenta_reg select sample_request<=
     en_2_cycles  when to_unsigned(299,cuenta_reg'length), -- cuando sea 0 o 299, o sale tarde o se alarga un pulso
     '0' when others;
+    
+
 end Behavioral;
